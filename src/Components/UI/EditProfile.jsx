@@ -114,6 +114,9 @@ export function EditProfile({ open, onClose, user, onProfileUpdated }) {
                       className="w-full h-full object-cover"
                       src={previewPhoto}
                       alt="Profile Preview"
+                      onError={(e) => {
+                          e.target.src = '/img/template-img.png';
+                      }}
                     />
                   </label>
                   <input
