@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import SignInputs from './SignInputs'; 
+import SignInputsEm from './SignInputsEm'; 
 import GenericButton from './GenericButton'; 
 import { Eye, EyeOff } from 'lucide-react';
 
@@ -143,52 +143,57 @@ export function SignUpFormEm({ onToggleForm }) {
                 
                 {successMessage && <p className="text-green text-sm">{successMessage}</p>}
                 <div className='w-3/4 flex flex-col gap-6'>
-                    <SignInputs 
+                    <SignInputsEm 
                         placeholder="Nombre" 
                         name="name" 
+                        value={formData.name}
                         onChange={handleChange} 
                     />
                     {submitted && errors.name && <p className="text-red text-sm mt-1">{errors.name}</p>}
                     
-                    <SignInputs 
+                    <SignInputsEm 
                         placeholder="Apellido" 
                         name="lastname"
+                        value={formData.lastname}
                         onChange={handleChange} 
                     />
                     {submitted && errors.lastname && <p className="text-red text-sm">{errors.lastname}</p>}
                     
-                    <SignInputs
+                    <SignInputsEm
                         placeholder="Correo electrónico" 
                         name="email" 
                         type="email"
+                        value={formData.email}
                         onChange={handleChange} 
                     />
                     {submitted && errors.email && <p className="text-red text-sm">{errors.email}</p>}
                     
-                    <SignInputs 
+                    <SignInputsEm 
                         placeholder="Número de contacto" 
                         name="contact_number" 
+                        value={formData.contact_number}
                         onChange={handleChange} 
                     />
                     {submitted && errors.contact_number && <p className="text-red text-sm">{errors.contact_number}</p>}
                     
-                    <div className="w-full">
+                    <div className="flex justify-center w-full">
                         <select 
                             name="contact_public" 
                             onChange={handleChange} 
                             value={formData.contact_public} 
-                            className="border-2 border-black text-center w-full h-12 rounded-md shadow-sm transition duration-300 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="border-2 border-black text-center w-[80%] h-10 rounded-xl hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                         >
                             <option value="0">Contacto Público No</option>
                             <option value="1">Contacto Público Sí</option>
                         </select>
                     </div>
 
-                    <div className="relative flex flex-col">
-                        <SignInputs 
+                    <div className="relative flex justify-center w-full">
+                        <SignInputsEm 
                             placeholder="Contraseña" 
                             name="password" 
                             type={showPassword ? 'text' : 'password'} 
+                            value={formData.password}
                             onChange={handleChange} 
                         />
                         <div 
@@ -200,11 +205,12 @@ export function SignUpFormEm({ onToggleForm }) {
                     </div>
                     {submitted && errors.password && <p className="text-red text-sm">{errors.password}</p>}
 
-                    <div className="relative flex flex-col">
-                        <SignInputs
+                    <div className="relative flex justify-center w-full">
+                        <SignInputsEm
                             placeholder="Confirmar contraseña" 
                             name="password_confirmation" 
                             type={showConfirmPassword ? 'text' : 'password'} 
+                            value={formData.password_confirmation}
                             onChange={handleChange} 
                         />
                         <div 
@@ -216,12 +222,12 @@ export function SignUpFormEm({ onToggleForm }) {
                     </div>
                     {submitted && errors.password_confirmation && <p className="text-red text-sm">{errors.password_confirmation}</p>}
                     
-                    <div className="w-full">
+                    <div className="flex justify-center w-full">
                         <select 
                             name="professions_id" 
                             onChange={handleChange} 
                             value={formData.professions_id} 
-                            className="border-2 border-black text-center w-full h-12 rounded-md shadow-sm transition duration-300 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="border-2 border-black text-center w-[80%] h-10 rounded-xl hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                         >
                             <option value="">Selecciona una profesión</option>
                             {Array.isArray(professions) && professions.length > 0 ? (
