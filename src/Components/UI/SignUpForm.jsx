@@ -68,15 +68,17 @@ export function SignUpForm({ onToggleForm }) {
             body: JSON.stringify(formDataToSubmit),
         })
         .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Error al registrarse.');
+            if (!response.ok) {
+                setErrors({ ...errors, email: 'El correo electrónico ya está registrado.' });
+                return;
             }
+            return response.json();
         })
         .then(data => {
-            console.log('Éxito:', data);
-            onToggleForm();
+            if (data) {
+                console.log('Éxito:', data);
+                onToggleForm();
+            }
         })
         .catch((error) => {
             console.error('Error:', error);

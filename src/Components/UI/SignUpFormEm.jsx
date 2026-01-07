@@ -90,11 +90,19 @@ export function SignUpFormEm({ onToggleForm }) {
             },
             body: JSON.stringify(formDataToSubmit), 
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                setErrors({ ...errors, email: 'El correo electrónico ya está registrado.' });
+                return;
+            }
+            return response.json();
+        })
         .then(data => {
-            console.log('Éxito:', data); 
-            setSuccessMessage('Registro exitoso. Iniciar Sesión.'); 
-            resetForm();
+            if (data) {
+                console.log('Éxito:', data); 
+                setSuccessMessage('Registro exitoso. Iniciar Sesión.'); 
+                resetForm();
+            }
         })
         .catch((error) => {
             console.error('Error:', error); 
